@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "dataset": "Philippine Election Simulator - Provincial Database",
+    "provinceCount": 82,
+    "populationReference": "2024 Census of Population",
+    "populationReferenceDate": "2024-07-01",
+    "populationSource": "Philippine Statistics Authority, 2025 Philippine Statistical Yearbook, Table 1.1",
+    "populationNote": "Provincial population counts exclude highly urbanized cities where separately reported. Use separate HUC records if the simulator is expanded to city-level electoral units.",
+    "missingDataNote": "null means the value has not been populated with a verified province-level source. Do not interpret null as zero.",
+    "historicalSupportNote": "Candidate IDs are placeholders for comparable, normalized historical vote shares. Presidential and vice-presidential results must not be mixed as though they were the same contest.",
+    "lastUpdated": "2026-11-26"
+  },
+  "provinces": [
+    {
+      "name": "Abra",
+      "region": "CAR",
+      "population": 246948,
+      "populationYear": 2024,
+      "sex": {
+        "male": null,
+        "female": null
+      },
+      "age": {
+        "18_30": null,
+        "31_45": null,
+        "46_60": null,
+        "60_above": null
+      },
+      "socioeconomic": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": null,
+        "E": null
+      },
+      "historicalSupport": {
+        "risa": null,
+        "sara": null,
+        "leni": null,
+        "raffy": null,
+        "bam": null,
+        "tito": null
+      },
+      "dataStatus": {
+        "population": "PSA_2024",
+        "sex": "pending",
+        "age": "pending",
+        "socioeconomic": "pending",
+        "historicalSupport": "pending"
+      }
+    },
+    {
+      "name": "Apayao",
+      "region": "CAR",
+      "population": 126587,
+      "populationYear": 2024,
+      "sex": {
+        "male": null,
+        "female": null
+      },
+      "age": {
+        "18_30": null,
+        "31_45": null,
+        "46_60": null,
+        "60_above": null
+      },
+      "socioeconomic": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": null,
+        "E": null
+      },
+      "historicalSupport": {
+        "risa": null,
+        "sara": null,
+        "leni": null,
+        "raffy": null,
+        "bam": null,
+        "tito": null
+      },
+      "dataStatus": {
+        "population": "PSA_2024",
+        "sex": "pending",
+        "age": "pending",
+        "socioeconomic": "pending",
+        "historicalSupport": "pending"
+      }
+    },
+    {
+      "name": "Benguet",
+      "region": "CAR",
+      "population": 473190,
+      "populationYear": 2024,
+      "sex": {
+        "male": null,

@@ -1,0 +1,35 @@
+PH ELECTION SIMULATOR — DATA NOTES
+
+CANDIDATE SALN INPUTS
+The game calculates each candidate's initial campaign war chest as exactly 10% of the SALN net-worth input stored in game.js.
+
+Risa Hontiveros — PHP 18,990,000; latest public SALN located: 2024.
+Sara Duterte — PHP 98,656,131.20; 2025 joint SALN with spouse Manases Carpio.
+Leni Robredo — PHP 14,380,000; latest publicly reported SALN located from her vice-presidential tenure: 2021.
+Raffy Tulfo — PHP 1,052,000,000; 2025 SALN figure reported as including spousal wealth.
+Bam Aquino — PHP 86,553,651; 2025 SALN.
+Tito Sotto — PHP 188,870,000; 2025 SALN.
+
+SALN references:
+- SALN Tracker Philippines (BetterGov), aggregator of SALN records sourced from official channels: https://saln.bettergov.ph/
+- Sara Duterte 2025 SALN PDF: https://saln.bettergov.ph/saln/sara-duterte/2025-sara-duterte.pdf
+- Manila Bulletin report on 2025 public senators' SALNs and figures: https://mb.com.ph/2025/10/30/salns-of-24-senators-show-mark-villar-as-richest-senator
+- Inquirer report on Sara Duterte's 2025 SALN: https://newsinfo.inquirer.net/2246746/2025-saln-vp-duterte-husband-post-p98-6m-net-worth-an-11-hike
+- PCIJ report on Leni Robredo's 2021 SALN: https://pcij.org/2022/06/30/dutertes-wealth-remain-secret-until-the-end-of-his-term/
+
+CANDIDATE PHOTOS
+The app uses Wikimedia Commons Special:FilePath image links for public candidate portraits. A fallback initials tile appears if an image URL is unavailable. Photo source and licensing details are on the respective Wikimedia Commons file pages.
+
+PROVINCE POPULATION BASELINE
+The province population numbers currently embedded in game.js are 2020 Census of Population and Housing counts. They are population baselines, not registered-voter counts. The current list contains 82 Philippine provinces. Province totals do not include all highly urbanized cities that are statistically separate from their surrounding provinces, nor does the 82-province list include NCR as a province.
+
+Official PSA references:
+- PSA 2024 POPCEN: https://psa.gov.ph/content/2024-census-population-popcen-population-counts-declared-official-president?vcode=11Jzm4
+- PSA 2025 Philippine Statistical Yearbook, Table 1.1: https://psa.gov.ph/system/files/psy/2025%20PSY%20Final_signed.pdf
+
+GAME MODEL NOTES
+- Direct province campaign: PHP 20,000 per province; one direct province campaign per candidate-player per province per week.
+- Independent random events are not caused by opponents. They may include positive/negative word of mouth, typhoon/flooding, earthquake, ashfall, storm surge, transport disruption, power interruption, cost-of-living concerns, and local community events.
+- Calamities apply a simulated turnout disruption to a share of the province's population. They do not change the official census population and do not imply that affected residents died.
+- Sector populations overlap. Do not sum sector estimates to derive a unique number of people.
+- All campaign outcomes, voter shifts, turnout impacts, and forecasts are game simulations, not polling, predictions, or real election data.

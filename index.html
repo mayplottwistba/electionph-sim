@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH Election Simulator — Campaign HQ</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* END WEEK BUTTON BESIDE CAMPAIGN ACTIVITY */
+
+    .activity-heading-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .activity-heading-row > div {
+      min-width: 0;
+    }
+
+    .activity-heading-row h3 {
+      font-size: 17px;
+    }
+
+    .end-week-sidebar {
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 11px 12px !important;
+      font-size: 9px !important;
+      background: #2563eb !important;
+      color: #ffffff !important;
+      border: 1px solid #4b8cf5 !important;
+    }
+
+    .end-week-sidebar:hover {
+      background: #1d4ed8 !important;
+    }
+
+    .end-week-sidebar:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    @media(max-width:540px) {
+      .activity-heading-row {
+        align-items: flex-start;
+      }
+
+      .end-week-sidebar {
+        padding: 9px !important;
+        font-size: 8px !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#" onclick="showView('setup');return false">
+    <span class="brand-mark">PH</span>
+    <span>
+      <b>PH ELECTION SIMULATOR</b>
+      <small>CAMPAIGN MANAGEMENT SYSTEM</small>
+    </span>
+  </a>
+
+  <div class="top-status">
+    <span class="status-dot"></span>
+    LOCAL GAME MODE
+    <span class="top-divider">|</span>
+    <span id="topWeek">SETUP</span>
+  </div>
+</header>
+
+<main class="app-shell">
+
+  <!-- =====================================
+       CANDIDATE SETUP
+  ====================================== -->
+
+  <section id="setupView" class="view">
+
+    <div class="hero">
+      <div class="eyebrow">
+  PHILIPPINE PRESIDENTIAL CAMPAIGN SIMULATION · DATA BASELINE: PSA 2024 POPCEN
+</div>
+
+      <h1>WIN THE<br><span>GROUND GAME.</span></h1>
+
+      <p>
+        Choose your player first, build a four-point platform,
+        then select the opponents you want in the race.
+        Opponents receive random advocacies.
+      </p>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">01 / CANDIDATE ROSTER</div>
+        <h2>Build your election</h2>
+        <p>
+          Step 1: choose your player. Step 2: select four advocacies.
+          Step 3: add one or more opponents.
+        </p>
+      </div>
+
+      <div class="counter">
+        <b id="selectedCount">0</b>
+        <small>SELECTED</small>
+      </div>
+    </div>
+
+    <div class="notice">
+      <b>Platform mechanics:</b>
+      Your four selected advocacies create additional voter sectors.
+      Each opponent receives four randomly selected advocacies and
+      campaigns toward their own platform sectors.
+      All opponent campaign spending comes from their own budgets.
+    </div>
+
+    <div class="notice">
+      <b>Budget rule:</b>
+      Each candidate starts with 10% of their latest publicly available
+      SALN net worth located for this build. SALN years differ by candidate;
+      where no newer public declaration was located, the latest reported
+      figure is used.
+    </div>
+
+    <div id="candidateGrid" class="candidate-grid"></div>
+
+    <section id="advocacySetup" class="advocacy-setup">
+      <div class="advocacy-setup-empty">
+        FIRST, CHOOSE YOUR PLAYER ABOVE. THEN SELECT FOUR CAMPAIGN ADVOCACIES.
+      </div>
+    </section>
+
+    <div class="setup-footer">
+      <div>
+        <b id="setupSummary">No main player selected</b>
+        <small id="setupBudget">Select candidates and choose your main player.</small>
+      </div>
+
+      <button
+        id="enterCampaignBtn"
+        class="btn primary"
+        disabled
+        onclick="startCampaign()">
+        ENTER CAMPAIGN HQ →
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       CAMPAIGN HEADQUARTERS
+  ====================================== -->
+
+  <section id="campaignView" class="view hidden">
+
+    <div class="campaign-layout">
+
+      <!-- MAIN COLUMN -->
+
+      <section class="main-column">
+
+        <div class="campaign-heading">
+
+          <div>
+            <div class="eyebrow">02 / CAMPAIGN HEADQUARTERS</div>
+
+            <h1>THE CAMPAIGN<br><span>TRAIL.</span></h1>
+
+            <p id="campaignSubtitle">
+              Manage your resources and persuade voters province by province.
+            </p>
+          </div>
+
+          <div class="week-box">
+            <small>CAMPAIGN WEEK</small>
+            <strong id="weekNumber">01</strong>
+            <span>OF 12</span>
+          </div>
+
+        </div>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="summary-grid">
+
+          <article class="summary-card player-summary">
+            <small>YOUR CANDIDATE</small>
+            <b id="hudPlayer">—</b>
+            <span id="hudParty">—</span>
+          </article>
+
+          <article class="summary-card">
+            <small>AVAILABLE BUDGET</small>
+            <b id="hudBudget">₱0</b>
+            <span>10% of entered SALN</span>
+          </article>
+
+          <article class="summary-card">
+            <small>YOUR SUPPORT</small>
+            <b id="hudSupport">0%</b>
+            <span id="hudSupportCount">0 likely voters</span>
+          </article>
+
+          <article class="summary-card">
+            <small>UNDECIDED VOTERS</small>
+            <b id="hudUndecided">0</b>
+            <span>Across modeled sectors</span>
+          </article>
+
+        </div>
+
+
+        <!-- CAMPAIGN ACTIONS -->
+
+        <section class="action-panel action-panel-wide">
+
+          <div class="eyebrow">03 / YOUR CAMPAIGN ACTIONS</div>
+
+          <h3>Build momentum</h3>
+
+          <p>
+            Take action at any time during the week.
+            Opponents are campaigning in parallel.
+          </p>
+
+          <div class="action-options-grid">
+
+            <div class="action-option">
+              <div>
+                <b>Community event</b>
+                <small>Town hall, sector meet-up or local rally</small>
+              </div>
+              <button class="btn small" onclick="runSpecialAction('event')">
+                ORGANIZE
+              </button>
+            </div>
+
+            <div class="action-option">
+              <div>
+                <b>Appear in a vlog</b>
+                <small>Reach online audiences and younger voters</small>
+              </div>
+              <button class="btn small" onclick="runSpecialAction('vlog')">
+                APPEAR
+              </button>
+            </div>
+
+            <div class="action-option">
+              <div>
+                <b>Media appearance</b>
+                <small>Interview, debate or national broadcast</small>
+              </div>
+              <button class="btn small" onclick="runSpecialAction('media')">
+                BOOK
+              </button>
+            </div>
+
+            <div class="action-option vote-buy-action">
+  <div>
+    <b>Vote Buying</b>
+    <small>₱400 per modeled voter targeted · High risk</small>
+  </div>
+  <button
+    class="btn small vote-buy-btn"
+    onclick="runSpecialAction('voteBuy')">
+    DEPLOY
+  </button>
+</div>
+
+
+
+            <div class="action-option">
+              <div>
+                <b>Provincial visit</b>
+                <small>Travel, meet local leaders and volunteers</small>
+              </div>
+              <button class="btn small" onclick="runSpecialAction('visit')">
+                VISIT
+              </button>
+            </div>
+
+            <div class="action-option smear-action">
+  <div>
+    <b>Smear campaign</b>
+    <small>Attack a rival's image. May backfire with voters.</small>
+  </div>
+  <button
+    class="btn small smear-btn"
+    onclick="runSpecialAction('smear')">
+    SMEAR
+  </button>
+</div>
+
+          </div>
+
+          <div class="cooldown-note" id="specialCooldown">
+  Each of the five special actions can be used once per week.
+  Smear campaigns are risky and may backfire.
+</div>
+
+        </section>
+
+
+        <!-- VOTER LANDSCAPE -->
+
+        <div class="section-head compact">
+
+          <div>
+            <div class="eyebrow">03 / VOTER LANDSCAPE</div>
+
+            <h2>Know your electorate</h2>
+
+            <p>
+              Your platform and opponents’ randomly assigned advocacies
+              determine the additional sectors in this election.
+            </p>
+          </div>
+
+          <div class="small-count" id="sectorCountLabel">
+            SECTORS
+          </div>
+
+        </div>
+
+        <div id="sectorGrid" class="sector-grid"></div>
+
+
+        <!-- PROVINCE CAMPAIGN -->
+
+        <section class="province-campaign">
+
+          <div class="section-head compact">
+
+            <div>
+              <div class="eyebrow">05 / GEOGRAPHIC TARGETING</div>
+
+              <h2>Provincial campaign map</h2>
+
+              <p>
+                Campaign in any province for a flat ₱20,000.
+                Each province can receive one direct campaign visit
+                from you per week.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="province-toolbar">
+
+            <input
+              id="provinceSearch"
+              type="search"
+              placeholder="Search province..."
+              oninput="renderProvinceList()">
+
+            <select
+              id="regionFilter"
+              onchange="renderProvinceList()">
+              <option value="all">All regions</option>
+            </select>
+
+          </div>
+
+          <div id="provinceList" class="province-list"></div>
+
+          <p class="data-note">
+  Province populations use official PSA 2024 POPCEN counts.
+  Highly urbanized cities are counted separately. These are population
+  baselines, not registered-voter totals.
+</p>
+
+        </section>
+
+
+        <!-- WEEK FOOTER - BUTTON MOVED TO SIDEBAR -->
+
+        <div class="week-footer">
+
+          <div>
+            <b id="weekFooterTitle">Week 1 campaign</b>
+            <small id="weekFooterText">
+              Take your actions, then end the week to reveal the forecast.
+            </small>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================
+           RIGHT SIDEBAR
+      ====================================== -->
+
+      <aside class="activity-pane">
+
+        <!-- CAMPAIGN FEED HEADER + END WEEK BUTTON -->
+
+        <section class="activity-header">
+
+          <div class="activity-heading-row">
+
+            <div>
+              <div class="eyebrow">LIVE CAMPAIGN FEED</div>
+              <h3>Campaign activity</h3>
+            </div>
+
+            <button
+              class="btn primary end-week-sidebar"
+              id="advanceWeekBtn"
+              onclick="advanceWeek()">
+              END WEEK 1 →
+            </button>
+
+          </div>
+
+          <p>
+            Opponent moves appear here automatically before your turn.
+          </p>
+
+          <div class="feed-live">
+            <span class="status-dot"></span>
+            LIVE WEEKLY UPDATES
+          </div>
+
+        </section>
+
+
+        <!-- LIVE FEED -->
+
+        <div id="activityFeed" class="activity-feed"></div>
+
+
+        <!-- WEEKLY FORECAST -->
+
+
+      </aside>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       ELECTION DAY
+  ====================================== -->
+
+  <section id="electionView" class="view hidden">
+
+    <div class="election-hero">
+
+      <div class="eyebrow">13 / ELECTION DAY</div>
+
+      <h1>THE COUNT<br><span>IS ON.</span></h1>
+
+      <p>
+        Returns arrive in stages. Follow the national tally
+        and provincial calls as the count progresses.
+      </p>
+
+      <div class="count-progress">
+        <div id="countProgressFill"></div>
+      </div>
+
+      <div class="count-meta">
+        <span id="countStage">Preparing first returns</span>
+        <b id="countPercent">0%</b>
+      </div>
+
+    </div>
+
+
+    <div class="election-grid">
+
+      <section>
+
+        <div class="section-head compact">
+
+          <div>
+            <div class="eyebrow">NATIONAL CANVASS</div>
+            <h2>Live vote count</h2>
+          </div>
+
+          <span class="live-tag">● SIMULATED LIVE</span>
+
+        </div>
+
+        <div id="nationalResults" class="national-results"></div>
+
+      </section>
+
+      <aside class="winner-card" id="winnerCard">
+
+        <div class="eyebrow">PROJECTED WINNER</div>
+
+        <h2>Awaiting returns</h2>
+
+        <p>
+          Election results will appear as counting progresses.
+        </p>
+
+      </aside>
+
+    </div>
+
+
+    <!-- PROVINCIAL RETURNS -->
+
+    <section class="returns-section">
+
+      <div class="section-head compact">
+
+        <div>
+          <div class="eyebrow">PROVINCIAL RETURNS</div>
+          <h2>Results by province</h2>
+        </div>
+
+        <span id="provinceReturnCount">
+          0 / 82 REPORTED
+        </span>
+
+      </div>
+
+      <div id="electionProvinceList" class="election-province-list"></div>
+
+    </section>
+
+    <button class="btn secondary" onclick="showLogs()">
+      VIEW COMPLETE CAMPAIGN & ELECTION LOGS
+    </button>
+
+  </section>
+
+</main>
+
+
+<!-- =====================================
+     CAMPAIGN MODAL
+====================================== -->
+
+<div id="campaignModal" class="modal hidden" role="dialog" aria-modal="true">
+
+  <div class="modal-card">
+
+    <button class="modal-close" onclick="closeCampaignModal()">×</button>
+
+    <div class="eyebrow">CAMPAIGN DEPLOYMENT</div>
+
+    <h2 id="modalTitle">Campaign to a sector</h2>
+
+    <p id="modalDescription">
+      Choose where to deploy your campaign.
+    </p>
+
+    <div class="form-row">
+      <label for="campaignProvince">TARGET PROVINCE</label>
+      <select id="campaignProvince"></select>
+    </div>
+
+    <div class="modal-sector-preview" id="modalSectorPreview"></div>
+
+    <div class="cost-preview">
+      <span>Estimated campaign cost</span>
+      <b id="campaignCost">₱0</b>
+    </div>
+
+    <div class="cost-preview">
+      <span>Potential voter conversions</span>
+      <b id="campaignReach">—</b>
+    </div>
+
+    <button
+      class="btn primary full"
+      id="confirmCampaignBtn"
+      onclick="confirmSectorCampaign()">
+      DEPLOY CAMPAIGN
+    </button>
+
+    <small class="modal-footnote">
+      Game-model estimates only. Outcomes are randomized
+      and never represent actual voter intentions.
+    </small>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================
+     CAMPAIGN LOGS MODAL
+====================================== -->
+
+<div id="logsModal" class="modal hidden" role="dialog" aria-modal="true">
+
+  <div class="modal-card logs-card">
+
+    <button class="modal-close" onclick="closeLogs()">×</button>
+
+    <div class="eyebrow">CAMPAIGN DIARY</div>
+
+    <h2>Campaign & election logs</h2>
+
+    <div class="log-filters">
+
+      <button class="active" onclick="filterLogs('all',this)">ALL</button>
+
+      <button onclick="filterLogs('campaign',this)">CAMPAIGN</button>
+
+      <button onclick="filterLogs('event',this)">EVENTS</button>
+
+      <button onclick="filterLogs('news',this)">NEWS</button>
+
+      <button onclick="filterLogs('election',this)">ELECTION</button>
+
+    </div>
+
+    <div id="logList" class="log-list"></div>
+
+  </div>
+
+</div>
+
+
+<!-- GAME JAVASCRIPT -->
+
+<script src="game.js"></script>
+
+</body>
+</html>

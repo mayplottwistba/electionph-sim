@@ -1,0 +1,221 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#171a20;--muted:#737b88;--line:#e4e7ec;--paper:#f4f5f7;--blue:#244d91;--red:#c63c49;--green:#a9d7b7;--pink:#efb8c5;--gold:#e7c36c}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--paper);color:var(--ink);font-size:13px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.topbar{height:66px;background:#15181e;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100% - 1320px)/2))}
+.brand{display:flex;align-items:center;gap:11px;color:white;text-decoration:none}
+.brand-mark{width:36px;height:36px;background:#fff;color:#171a20;display:grid;place-items:center;font-weight:800}
+.brand b,.brand small{display:block}.brand b{font-size:11px;letter-spacing:1px}.brand small{font:8px "Roboto Mono",monospace;color:#aeb5c0;margin-top:4px}
+.top-status{font:9px "Roboto Mono",monospace;color:#c4cad3}.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#70c58d;margin-right:6px}.top-divider{margin:0 9px;color:#666}
+.app-shell{max-width:1320px;margin:auto;padding:42px 28px 70px}.view{display:block}.hidden{display:none!important}
+.hero{margin:0 0 42px}.eyebrow{font:700 9px "Roboto Mono",monospace;letter-spacing:1.5px;color:var(--red);margin-bottom:9px}
+h1{font-size:clamp(42px,6vw,70px);line-height:.96;letter-spacing:-3px;font-weight:800}h1 span{color:var(--blue)}
+.hero p,.campaign-heading p,.election-hero p{font-size:12px;line-height:1.7;color:var(--muted);max-width:530px;margin-top:15px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}.section-head h2{font-size:23px;letter-spacing:-.8px}.section-head p{font-size:10px;color:var(--muted);margin-top:6px}
+.counter,.week-box{background:var(--ink);color:#fff;text-align:center;padding:9px 15px;min-width:75px}.counter b,.counter small,.week-box strong,.week-box small,.week-box span{display:block}.counter b{font-size:22px}.counter small,.week-box small,.week-box span{font:8px "Roboto Mono",monospace;color:#bdc4cf}.notice{background:#fff8e7;border:1px solid #efdfb6;padding:12px 14px;font-size:10px;line-height:1.6;margin-bottom:16px}
+.candidate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.candidate-card{display:grid;grid-template-columns:94px minmax(0,1fr);background:white;border:1px solid var(--line);min-width:0}.candidate-card.selected{outline:2px solid var(--blue);outline-offset:-2px}
+.candidate-photo{background:#e7e9ed;min-height:100%;overflow:hidden;display:grid;place-items:center}.candidate-photo img{width:100%;height:100%;min-height:150px;max-height:220px;object-fit:cover;object-position:center 20%;display:block}.candidate-photo img[hidden]{display:none}.photo-initials{width:100%;height:100%;min-height:150px;display:grid;place-items:center;font-weight:800;font-size:25px;color:#747b86}
+.candidate-info{padding:10px;min-width:0}.candidate-id{font:8px "Roboto Mono",monospace;color:var(--red);margin-bottom:5px}.candidate-name{font-size:14px;font-weight:800;line-height:1.2}.candidate-meta{font-size:9px;color:var(--muted);line-height:1.5;margin-top:5px}.party{display:inline-block;background:#edf1f8;color:var(--blue);padding:4px 5px;font:8px "Roboto Mono",monospace;margin-top:7px}
+.saln-field{margin-top:9px;background:#f5f6f8;padding:7px;border-left:2px solid var(--blue)}.saln-field label{font:8px "Roboto Mono",monospace;color:var(--muted);display:block;margin-bottom:4px}.saln-field input{width:100%;border:1px solid #dfe3e9;padding:6px;font-size:10px;background:white}.budget-value{font-size:10px;font-weight:800;margin-top:5px}.advocacy-title{font:8px "Roboto Mono",monospace;color:var(--muted);margin:9px 0 5px}.advocacies{list-style:none}.advocacies li{font-size:9px;line-height:1.4;padding:3px 0;border-bottom:1px solid #f1f2f4}.advocacies li:before{content:"• ";color:var(--red)}
+.card-actions{display:flex;gap:5px;margin-top:9px}.card-actions button{flex:1;padding:7px 3px;border:1px solid var(--line);background:white;font:700 8px "Roboto Mono",monospace}.card-actions button:disabled{opacity:.4;cursor:not-allowed}.select-btn.active{background:var(--blue);color:white;border-color:var(--blue)}.main-btn.active{background:#20242b;color:white;border-color:#20242b}
+.setup-footer,.week-footer{margin-top:20px;background:white;border:1px solid var(--line);padding:17px;display:flex;justify-content:space-between;align-items:center;gap:15px}.setup-footer b,.setup-footer small,.week-footer b,.week-footer small{display:block}.setup-footer b,.week-footer b{font-size:12px}.setup-footer small,.week-footer small{font-size:9px;color:var(--muted);margin-top:5px}
+.btn{border:0;padding:12px 16px;font:700 9px "Roboto Mono",monospace;letter-spacing:.3px}.btn.primary{background:var(--blue);color:#fff}.btn.primary:hover{background:#17386f}.btn.secondary{background:#e9edf3;color:var(--blue);border:1px solid #d4dce9}.btn.small{padding:9px 10px;background:#edf1f7;color:var(--blue);border:1px solid #dce3ee}.btn:disabled{opacity:.4;cursor:not-allowed}.btn.full{width:100%}
+.campaign-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;gap:20px}.campaign-heading h1{font-size:clamp(38px,5vw,58px)}.week-box{min-width:100px;padding:13px}.week-box strong{font-size:28px;margin:4px 0}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:27px}.summary-card{background:white;border:1px solid var(--line);padding:13px;min-width:0}.summary-card small,.summary-card span{display:block;font:8px "Roboto Mono",monospace;color:var(--muted)}.summary-card b{display:block;font-size:19px;margin:7px 0;overflow-wrap:anywhere}.summary-card span{font-size:8px}.player-summary{border-top:3px solid var(--blue)}
+.campaign-layout{display:grid;grid-template-columns:minmax(0,4fr) minmax(220px,1fr);gap:16px;align-items:start}.section-head.compact{margin-bottom:13px}.section-head.compact h2{font-size:20px}.small-count{font:8px "Roboto Mono",monospace;color:var(--muted)}
+.sector-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.sector-card{background:white;border:1px solid var(--line);padding:13px;min-width:0}.sector-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.sector-card h3{font-size:13px}.sector-card .sector-count{font:8px "Roboto Mono",monospace;color:var(--muted);margin-top:4px}.sector-chip{font:8px "Roboto Mono",monospace;padding:5px 6px;background:#f0f2f5;color:#555}.sector-split{height:10px;background:#edf0f3;display:flex;overflow:hidden;margin:12px 0 8px}.split-player{background:#244d91}.split-opponent{background:#e3a8b7}.split-undecided{background:#d7dbe1}.split-legend{display:flex;flex-wrap:wrap;gap:9px;font-size:8px;color:var(--muted)}.split-legend i{display:inline-block;width:7px;height:7px;margin-right:4px}.sector-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:10px 0}.sector-stat small{display:block;font:7px "Roboto Mono",monospace;color:var(--muted)}.sector-stat b{font-size:11px;display:block;margin-top:3px}.sector-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #f0f1f3;padding-top:9px;margin-top:8px}.sector-actions small{font-size:8px;color:var(--muted)}.sector-actions .done{color:#43875a;font-weight:700}
+.side-column{display:grid;gap:12px}.action-panel,.player-status{background:white;border:1px solid var(--line);padding:15px}.action-panel h3{font-size:17px}.action-panel>p{font-size:9px;color:var(--muted);line-height:1.6;margin:6px 0 12px}.action-option{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:11px 0;border-top:1px solid #eef0f3}.action-option b,.action-option small{display:block}.action-option b{font-size:10px}.action-option small{font-size:8px;color:var(--muted);margin-top:3px;line-height:1.4}.cooldown-note{font-size:8px;color:var(--muted);padding-top:8px;border-top:1px solid #eef0f3}.status-row{display:flex;justify-content:space-between;gap:8px;font-size:9px;padding:9px 0;border-bottom:1px solid #f0f1f3}.status-row b{font-family:"Roboto Mono",monospace;font-size:9px}.budget-track{height:7px;background:#eceff3;margin:12px 0}.budget-track div{height:100%;background:var(--blue);width:100%;transition:width .3s}.player-status .btn{margin-top:10px}
+.province-campaign{margin-top:30px}.province-toolbar{display:flex;gap:8px;margin-bottom:10px}.province-toolbar input,.province-toolbar select{min-width:0;padding:9px;border:1px solid var(--line);background:white;font-size:10px}.province-toolbar input{flex:1}.province-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.province-item{background:white;border:1px solid var(--line);padding:10px;cursor:pointer;text-align:left}.province-item:hover,.province-item.active{border-color:var(--blue)}.province-item b{font-size:10px;display:block}.province-item small{font:7px "Roboto Mono",monospace;color:var(--muted);display:block;margin-top:4px}.province-item .mini-bar{height:6px;background:#eef0f3;display:flex;margin-top:8px;overflow:hidden}
+.week-footer{margin-top:22px}.week-footer .btn{min-width:160px}
+.election-hero{background:#171a20;color:white;padding:30px;margin-bottom:25px}.election-hero .eyebrow{color:#e8bf64}.election-hero h1{font-size:clamp(42px,6vw,66px)}.election-hero h1 span{color:#e8bf64}.election-hero p{color:#c2c8d1}.count-progress{height:8px;background:#343943;margin-top:24px}.count-progress div{height:100%;width:0;background:#e8bf64;transition:width .6s}.count-meta{display:flex;justify-content:space-between;margin-top:8px;font:9px "Roboto Mono",monospace;color:#c7ccd4}
+.election-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:15px}.live-tag{font:8px "Roboto Mono",monospace;color:#b14a56}.national-results{background:white;border:1px solid var(--line)}.national-row{padding:13px;border-bottom:1px solid var(--line)}.national-row-top{display:flex;justify-content:space-between;gap:10px;font-size:11px;margin-bottom:8px}.national-row small{font-size:8px;color:var(--muted)}.national-track{height:9px;background:#edf0f3}.national-track div{height:100%;background:var(--blue);transition:width .4s}.national-row:first-child .national-track div{background:var(--red)}
+.winner-card{background:white;border:1px solid var(--line);padding:18px;min-height:180px}.winner-card h2{font-size:20px;margin:10px 0}.winner-card p{font-size:10px;line-height:1.6;color:var(--muted)}.winner-card .winner-name{font-size:22px;font-weight:800}.returns-section{margin:28px 0}.election-province-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.return-item{background:white;border:1px solid var(--line);padding:10px}.return-item b{font-size:10px;display:block}.return-item small{font-size:8px;color:var(--muted);display:block;margin-top:4px}
+.modal{position:fixed;inset:0;background:#10141dcc;z-index:20;display:grid;place-items:center;padding:18px}.modal-card{width:min(100%,470px);max-height:90vh;overflow:auto;background:white;padding:24px;position:relative}.modal-card h2{font-size:23px}.modal-card>p{font-size:10px;color:var(--muted);line-height:1.6;margin:8px 0 18px}.modal-close{position:absolute;right:14px;top:10px;border:0;background:none;font-size:25px;color:#777}.form-row label{display:block;font:8px "Roboto Mono",monospace;color:var(--muted);margin-bottom:6px}.form-row select{width:100%;padding:11px;border:1px solid var(--line);background:white}.modal-sector-preview{background:#f5f6f8;padding:12px;margin:13px 0;font-size:10px;line-height:1.7}.cost-preview{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:10px}.cost-preview b{font-family:"Roboto Mono",monospace}.modal-footnote{display:block;color:var(--muted);font-size:8px;line-height:1.5;margin-top:10px}
+.logs-card{width:min(100%,650px)}.log-filters{display:flex;gap:5px;flex-wrap:wrap;margin:15px 0}.log-filters button{border:1px solid var(--line);background:white;padding:7px 9px;font:8px "Roboto Mono",monospace}.log-filters button.active{background:var(--ink);color:white}.log-list{display:grid;gap:7px}.log-entry{padding:10px;border-left:3px solid #aeb7c5;background:#f5f6f8}.log-entry.campaign{border-color:var(--blue)}.log-entry.event{border-color:#bd9a4b}.log-entry.news{border-color:#a36ca9}.log-entry.election{border-color:#4d9669}.log-entry small{font:8px "Roboto Mono",monospace;color:var(--muted)}.log-entry p{font-size:10px;line-height:1.55;margin-top:4px}
+@media(max-width:950px){.campaign-layout{grid-template-columns:1fr}.side-column{grid-template-columns:repeat(2,minmax(0,1fr))}.election-grid{grid-template-columns:1fr 260px}}
+@media(max-width:720px){.candidate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.election-grid{grid-template-columns:1fr}.election-province-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.app-shell{padding:28px 13px 50px}.topbar{padding:0 13px}.top-status{font-size:7px}.brand b{font-size:9px}.candidate-grid{grid-template-columns:1fr}.candidate-card{grid-template-columns:92px minmax(0,1fr)}.side-column{grid-template-columns:1fr}.sector-grid,.province-list{grid-template-columns:1fr}.campaign-heading{align-items:flex-start}.campaign-heading h1{font-size:40px}.week-box{min-width:75px}.setup-footer,.week-footer{align-items:stretch;flex-direction:column}.setup-footer .btn,.week-footer .btn{width:100%}.province-header{align-items:flex-start}.section-head h2{font-size:19px}.election-province-list{grid-template-columns:1fr}.winner-card{min-height:0}}
+
+
+/* Advocacy-first election setup */
+.candidate-card.main-selected{outline:2px solid #171a20;outline-offset:-2px}
+.advocacy-setup{background:#fff;border:1px solid var(--line);padding:18px;margin-top:18px}
+.advocacy-setup-empty{padding:12px;background:#f5f6f8;color:var(--muted);font:9px "Roboto Mono",monospace;text-align:center}
+.advocacy-setup-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px}
+.advocacy-setup-head h2{font-size:22px;letter-spacing:-.7px}
+.advocacy-setup-head p{font-size:10px;color:var(--muted);margin-top:5px}
+.advocacy-counter{background:var(--ink);color:white;padding:9px 14px;text-align:center;min-width:68px}
+.advocacy-counter b,.advocacy-counter small{display:block}.advocacy-counter b{font-size:20px}.advocacy-counter small{font:8px "Roboto Mono",monospace;color:#c5cbd4}
+.advocacy-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.advocacy-choice{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:10px;cursor:pointer;min-width:0}
+.advocacy-choice.chosen{border-color:var(--blue);background:#f2f5fa}
+.advocacy-choice input{accent-color:var(--blue)}
+.advocacy-choice span{flex:1;min-width:0}.advocacy-choice b,.advocacy-choice small{display:block}.advocacy-choice b{font-size:10px}.advocacy-choice small{font-size:8px;color:var(--muted);margin-top:3px}
+.advocacy-choice i{font-style:normal;font-weight:800;color:var(--blue)}
+.opponent-platform-note{font-size:9px;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+@media(max-width:540px){.advocacy-choice-grid{grid-template-columns:1fr}.advocacy-setup-head{align-items:flex-start}}
+
+/* 80/20 campaign command center and live opponent activity */
+.activity-pane{position:sticky;top:12px;min-width:0;max-height:calc(100vh - 24px);overflow:auto;background:#171a20;color:#f4f5f7;padding:14px;display:flex;flex-direction:column;gap:12px}
+.activity-header h3{font-size:17px}.activity-header p{font-size:9px;line-height:1.5;color:#aeb5c0;margin:6px 0 10px}.activity-header .eyebrow{color:#e6bd68}.feed-live{font:8px "Roboto Mono",monospace;color:#9dd4aa}
+.activity-feed{display:grid;gap:7px;max-height:48vh;overflow:auto;padding-right:3px}.feed-item{background:#222731;border:1px solid #333b48;padding:9px}.feed-title-row{display:flex;gap:7px;align-items:flex-start}.feed-title-row b{font-size:9px;line-height:1.4}.feed-dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px;margin-top:3px}.feed-item>small{display:block;font:7px "Roboto Mono",monospace;color:#9ba4b1;margin:5px 0}.feed-item p{font-size:8px;line-height:1.5;color:#c5cbd4}.feed-empty{font-size:9px;color:#aeb5c0;padding:12px}
+.forecast-panel,.right-status,.rival-budget-panel{background:#222731;border:1px solid #333b48;padding:11px}.forecast-panel .eyebrow,.right-status .eyebrow,.rival-budget-panel .eyebrow{color:#e6bd68}.forecast-panel h3{font-size:14px}.forecast-panel>p{font-size:8px;line-height:1.5;color:#b9c1cc;margin:5px 0 10px}.forecast-row{margin:9px 0}.forecast-row>div:first-child{display:flex;align-items:center;gap:5px}.forecast-row i,.rival-budget-row i{width:8px;height:8px;border-radius:50%;display:inline-block;flex:0 0 8px}.forecast-row b{font-size:8px;flex:1}.forecast-row strong{font:700 9px "Roboto Mono",monospace}.forecast-track,.rival-track{height:5px;background:#414956;margin:5px 0}.forecast-track span,.rival-track span{height:100%;display:block}.forecast-row small{font-size:7px;color:#aeb5c0}.forecast-note{font-size:7px;line-height:1.5;color:#929ba8;margin-top:8px}.right-status .status-row{color:#cbd1da;border-color:#3a424e}.right-status .status-row b{color:#fff}.right-status .budget-track{background:#414956}.rival-budget-row{padding:8px 0;border-bottom:1px solid #3a424e}.rival-budget-row>div:first-child{display:flex;align-items:center;gap:6px}.rival-budget-row b{font-size:8px;flex:1}.rival-budget-row strong{display:block;font:8px "Roboto Mono",monospace;margin-top:4px}.rival-track{margin-bottom:0}
+@media(max-width:950px){.campaign-layout{grid-template-columns:1fr}.activity-pane{position:static;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.activity-header{grid-column:1/-1}.activity-feed{max-height:400px}.right-status,.rival-budget-panel,.forecast-panel{min-width:0}}
+@media(max-width:540px){.activity-pane{grid-template-columns:1fr}.activity-header{grid-column:auto}}
+
+
+/* Readability pass: larger type and strong black text contrast */
+body{font-size:15px;color:#111318}
+.hero p,.campaign-heading p,.election-hero p{font-size:14px;color:#343943}
+.section-head p{font-size:12px;color:#343943}
+.notice{font-size:12px;color:#171a20}
+.candidate-id{font-size:10px;color:#252a33}.candidate-name{font-size:16px;color:#101216}.candidate-meta{font-size:11px;color:#343943}.party{font-size:10px;color:#17386f}
+.saln-field label{font-size:9px;color:#303640}.saln-networth{font-size:13px;font-weight:800;color:#111}.saln-note{font-size:9px;color:#343943;margin-top:3px}.budget-value{font-size:12px;color:#111}
+.card-actions button{font-size:9px}.setup-footer b,.week-footer b{font-size:14px}.setup-footer small,.week-footer small{font-size:11px;color:#343943}
+.summary-card small,.summary-card span{font-size:10px;color:#303640}.summary-card b{font-size:21px}.section-head.compact h2{font-size:22px}.small-count{font-size:10px;color:#303640}
+.sector-card h3{font-size:15px}.sector-card .sector-count{font-size:10px;color:#303640}.split-legend{font-size:10px;color:#303640}.sector-stat small{font-size:9px;color:#303640}.sector-stat b{font-size:13px}.sector-actions small{font-size:10px;color:#303640}
+.province-toolbar input,.province-toolbar select{font-size:12px;color:#111}.province-item{color:#111}.province-item b{font-size:13px;color:#111}.province-item small{font-size:10px;color:#303640}.province-leader{font-size:10px;color:#222}.province-card-actions .btn{font-size:9px}.data-note{font-size:10px;color:#333;margin-top:10px;line-height:1.5}
+.action-option b{font-size:12px}.action-option small{font-size:10px;color:#343943}.cooldown-note{font-size:10px;color:#343943}
+.activity-header p{font-size:11px;color:#e0e4eb}.feed-title-row b{font-size:11px;color:#fff}.feed-item>small{font-size:9px}.feed-item p{font-size:10px;color:#e0e4eb}.forecast-panel>p{font-size:10px;color:#e0e4eb}.forecast-row b{font-size:10px}.forecast-row strong{font-size:11px}.forecast-row small{font-size:9px;color:#d6dbe3}.right-status .status-row{font-size:11px}.right-status .status-row b{font-size:11px}.rival-budget-row b,.rival-budget-row strong{font-size:10px}
+.province-item{cursor:default}.province-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.province-leader{max-width:44%;text-align:right;font-weight:700}.province-card-actions{display:flex;gap:6px;margin-top:10px}.province-card-actions button{flex:1;white-space:nowrap}.province-campaign-btn{background:#171a20!important;color:#fff!important;border-color:#171a20!important}.province-campaign-btn:disabled{background:#e8ebef!important;color:#68717f!important;border-color:#d8dde5!important}.impact-note{color:#8b3d2b!important;font-weight:700}.mini-bar{border-radius:2px}
+@media(max-width:650px){.candidate-grid{grid-template-columns:1fr}.candidate-card{grid-template-columns:100px minmax(0,1fr)}.province-list{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.photo-initials[hidden]{display:none!important}
+
+/* =====================================
+   PH ELECTION SIMULATOR - NIGHT MODE
+   ===================================== */
+
+:root {
+  --bg-main: #0b1120;
+  --bg-secondary: #111a2b;
+  --bg-card: #172338;
+  --bg-card-hover: #1d2b43;
+  --bg-input: #101a2a;
+
+  .smear-btn {
+  background: #7f1d1d !important;
+  color: #ffffff !important;
+  border: 1px solid #b45353 !important;
+}
+
+.smear-btn:hover {
+  background: #991b1b !important;
+}
+
+.smear-action {
+  border-left: 2px solid #b45353;
+}
+
+.vote-buy-btn {
+  background: #854d0e !important;
+  color: #ffffff !important;
+  border: 1px solid #ca8a04 !important;
+}
+
+.vote-buy-btn:hover {
+  background: #a16207 !important;
+}
+
+.vote-buy-action {
+  border-left: 2px solid #ca8a04;
+}
+/* Candidate progress bar colors and legends */
+
+.sector-split {
+  display: flex;
+  height: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #293850;
+  margin: 12px 0;
+}
+
+.sector-split > div {
+  transition: width .3s ease;
+}
+
+.mini-bar {
+  display: flex;
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #293850;
+  margin: 12px 0;
+}
+
+.mini-bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 8px 0 12px;
+  font-size: 10px;
+}
+
+.mini-bar-legend span,
+.split-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.mini-bar-legend i,
+.split-legend i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+} 
+
+
+/* Keep original province card background */
+.province-item.province-mine,
+.province-item.province-opponent {
+  background: unset !important;
+  border: unset !important;
+  border-left: unset !important;
+}
+
+/* YOUR TERRITORY */
+.status-mine {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+}
+
+/* OPPONENT LEADING */
+.status-opponent {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.province-status {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 4px 8px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.activity-feed {
+  display: grid !important;
+  gap: 8px;
+  min-height: 100px;
+  max-height: 48vh;
+  overflow-y: auto !important;
+  padding: 4px;
+}
+
+.feed-item {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.feed-item p {
+  display: block !important;
+  color: #c5cbd4;
+}
